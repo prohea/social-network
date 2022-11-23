@@ -48,7 +48,7 @@ const thoughtController = {
             }
             res.json(dbUserData);
         })
-        .catch(err => res.json(err))''
+        .catch(err => res.json(err));
     },
 
     addThought({ body }, res) {
