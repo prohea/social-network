@@ -1,39 +1,32 @@
 const connection = require('../config/connection');
 const { User, Thought } = require('../models');
-const { getRandomThoughts, getRandomUser, getRandomReaction } = require('./data');
+const { getRandomUser, getRandomThoughts } = require('./data');
 
 connection.on('error', (err) => err);
 
 connection.once('open', async () => {
-    console.log('connected');
-    
-    await Thought.deleteMany({});
+  console.log('connected');
+  await Thought.deleteMany({});
+  await User.deleteMany({});
 
-    await User.deleteMany({});
+  const users = [];
+  const thoughts = getRandomThoughts(10);
 
-    const users = [];
+  for (let i = 0; i < 20; i++) {
+    const userName = getRandomUser();
 
-    for (let i = 0; i < 20; i++) {
-        const thoughts = getRandomThoughts();
-
-        const users = getRandomUser();
-        const reactions = getRandomReaction();
-
-        users.push({
-            thoughts,
-            reactions
-        });
-    }
-    
-    await User.collection.insertMany(users);
-
-    await Thought.collection.insertOne({
-        thoughts: [...thoughts],
-        reactions: [...reactions],
-        users: [...users],
+    users.push({
+     userName,
+      age: Math.floor(Math.random() * (99 - 18 + 1) + 18),
     });
+  }
 
-    console.table(users);
-    console.info('Seeding complete!');
-    process.exit(0);
+  await User.collection.insertMany(users);
+  await Application.collection.insertMany(applications);
+
+  // loop through the saved applications, for each application we need to generate a application response and insert the application responses
+  console.table(users);
+  console.table(applications);
+  console.info('Seeding complete! 🌱');
+  process.exit(0);
 });
