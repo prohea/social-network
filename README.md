@@ -19,8 +19,9 @@ THEN I am able to successfully create and delete reactions to thoughts and add a
 # Resources Used
 
 # Technologies Used
-HTML, CSS, JavaScript, Node, Mongoose, Mongo
+CSS,JavaScript, Node, Mongoose, Mongo
 # Deployed Project
+https://github.com/prohea/Social-Web
 
 # Screenshot
 ![API]()
